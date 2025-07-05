@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Vinícius - Desenvolvedor Web</title>
+    <meta name="description" content="Portfólio de Vinícius, desenvolvedor web em formação. Conheça meus projetos e habilidades.">
+    <meta name="keywords" content="Vinícius, desenvolvedor web, portfólio, HTML, CSS, JavaScript, PHP, MySQL, projetos, programação">
+    <meta name="author" content="Vinícius">
+
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* Variáveis CSS - Paleta de cores mais refinada */
+        :root {
+            --bg-primary: #0D1117; /* Fundo principal escuro (GitHub-like) */
+            --bg-secondary: #161B22; /* Fundo de elementos (cards, navbar) */
+            --bg-tertiary: #21262D; /* Fundo de hover/borda suave */
+            --accent-color: #58A6FF; /* Cor de destaque (azul vibrante) */
+            --accent-hover: #4C95ED; /* Cor de destaque ao passar o mouse */
+            --text-light: #C9D1D9; /* Texto claro principal */
+            --text-muted: #8B949E; /* Texto secundário/mutado */
+            --border-color: rgba(255, 255, 255, 0.1); /* Cor de borda sutil */
+        }
+
+        /* Estilos Globais */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif; /* Fonte para o corpo do texto */
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Evita scroll horizontal indesejado */
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif; /* Fonte mais impactante para títulos */
+            font-weight: 700; /* Mais peso para os títulos */
+            color: var(--text-light);
+        }
+
+        p {
+            line-height: 1.7;
+            font-weight: 300; /* Texto mais leve */
+             color: var(--text-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* Navbar - Design mais minimalista */
+        .navbar {
+            background-color: var(--bg-primary); /* Fundo sólido para a navbar */
+            padding: 1.2rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color); /* Borda sutil na parte inferior */
+        }
+
+        .navbar.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.7rem; /* Tamanho maior para a marca */
+            color: var(--text-light) !important;
+            letter-spacing: 1px; /* Mais espaçamento para o texto */
+        }
+
+        .navbar-brand span {
+            color: var(--accent-color);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 0.8rem;
+            position: relative;
+            color: var(--text-muted) !important;
+            transition: color 0.3s ease, transform 0.2s ease; /* Adiciona transição para hover */
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-color) !important; /* Cor de destaque ao passar o mouse */
+            transform: translateY(-2px); /* Pequeno efeito de elevação */
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; /* Abaixo do texto */
+            left: 50%; /* Centraliza o underline */
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px; /* Espessura do underline */
+            background-color: var(--accent-color);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 80%; /* Largura do underline no hover/active */
+        }
+
+        .navbar-toggler {
+            border: none; /* Remove borda do toggler */
+        }
+
+        .navbar-toggler-icon {
+            filter: brightness(0) invert(1); /* Ícone branco */
+        }
+
+        /* Hero Section - Layout focado e imagem de destaque */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centraliza conteúdo horizontalmente */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 0 4rem; /* Mais padding para espaçamento */
+        }
+
+        /* Efeito de fundo sutil (ainda melhor) */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 75% 25%, rgba(88, 166, 255, 0.08) 0%, rgba(13, 17, 23, 0) 60%),
+                        radial-gradient(circle at 25% 75%, rgba(88, 166, 255, 0.08) 0%, rgba(13, 17, 23, 0) 60%);
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 1; /* Garante que o conteúdo fique acima do fundo */
+        }
+
+        .hero-subtitle {
+            color: var(--accent-color);
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 6vw, 5.5rem); /* Título grande e responsivo */
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block; /* Para o efeito de sublinhado animado */
+        }
+        
+        /* Efeito de texto com degradê sutil */
+        .hero-title span {
+            background: linear-gradient(90deg, var(--accent-color), #A5D6FF);
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .profile-img {
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 6px solid var(--bg-secondary);
+            box-shadow: 0 0 0 4px var(--accent-color), 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra mais destacada */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            margin-top: 2rem; /* Espaçamento da imagem */
+        }
+
+        .profile-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 0 6px var(--accent-color), 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Botões - Estilo mais flat e moderno */
+        .btn-primary {
+            background-color: var(--accent-color);
+            border: none;
+            padding: 0.9rem 2.2rem; /* Mais padding */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 8px; /* Cantos mais arredondados */
+            text-transform: uppercase; /* Texto em maiúsculas */
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(88, 166, 255, 0.2);
+            color: var(--bg-primary) !important; /* Texto escuro no botão claro */
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(88, 166, 255, 0.3);
+        }
+
+        .btn-outline-light {
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 0.9rem 2.2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            background-color: transparent;
+        }
+
+        .btn-outline-light:hover {
+            background-color: var(--bg-tertiary);
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Seções Gerais */
+        .section {
+            padding: 7rem 0; /* Mais padding entre as seções */
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3.5rem; /* Mais espaço após o título */
+            font-size: 2.8rem; /* Título maior */
+            font-weight: 700;
+            text-align: center; /* Centraliza o título da seção */
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px; /* Mais para baixo */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px; /* Mais largo */
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .bg-secondary-custom { /* Novo nome para o fundo de superfície */
+            background-color: var(--bg-secondary);
+        }
+
+        /* Cards em geral (habilidades, projetos, contato) */
+        .card-custom {
+            background-color: var(--bg-secondary);
+            border-radius: 12px; /* Mais arredondado */
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-custom:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(88, 166, 255, 0.2);
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); /* Tamanho mínimo um pouco maior */
+            gap: 1.8rem; /* Mais espaçamento entre os cards */
+        }
+
+        .skill-card {
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .skill-icon {
+            font-size: 3.2rem; /* Ícones maiores */
+            color: var(--accent-color);
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-name {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Projects */
+        .project-card {
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-img {
+            height: 220px; /* Imagens um pouco maiores */
+            object-fit: cover;
+            width: 100%;
+            border-radius: 12px 12px 0 0; /* Arredonda só a parte superior */
+        }
+
+        .project-card .p-4 {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-tag {
+            background-color: rgba(88, 166, 255, 0.15); /* Fundo mais escuro para a tag */
+            color: var(--accent-color);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 0.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        /* Contact */
+        .contact-card {
+            padding: 2.5rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        .contact-icon {
+            font-size: 3rem; /* Ícone de contato maior */
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card h4 {
+            font-size: 1.7rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-card p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer - Minimalista e elegante */
+        .footer {
+            background-color: var(--bg-secondary); /* Fundo do footer diferenciado */
+            padding: 4rem 0 2rem; /* Mais espaçamento */
+            border-top: 1px solid var(--border-color); /* Borda superior sutil */
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            display: block; /* Para garantir margin-bottom funciona */
+        }
+
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem; /* Mais espaçamento entre os ícones */
+            margin-bottom: 2.5rem;
+        }
+
+        .social-link {
+            width: 48px; /* Ícones maiores */
+            height: 48px;
+            font-size: 1.6rem; /* Tamanho do ícone dentro do círculo */
+            border: 1px solid var(--border-color); /* Borda para o ícone */
+            background-color: transparent;
+            color: var(--text-light);
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-primary); /* Texto escuro no hover */
+            border-color: var(--accent-color);
+            transform: translateY(-5px) rotate(5deg); /* Efeito mais dinâmico */
+            box-shadow: 0 8px 20px rgba(88, 166, 255, 0.3);
+        }
+
+        .footer-links {
+            margin-bottom: 2.5rem;
+            flex-direction: column; /* Links em coluna no footer */
+            gap: 0.8rem; /* Espaçamento menor entre eles */
+            align-items: center; /* Centraliza os links */
+        }
+
+        .footer-link {
+            font-weight: 400;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            position: relative;
+            padding: 0.2rem 0; /* Espaço para o underline */
+        }
+        
+        .footer-link::after { /* Novo underline animado para o footer */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding-top: 1.5rem; /* Espaço em cima do copyright */
+            border-top: 1px solid var(--border-color); /* Linha sutil antes do copyright */
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 55px; /* Maior */
+            height: 55px;
+            font-size: 1.5rem;
+            background-color: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(88, 166, 255, 0.4);
+        }
+
+        .back-to-top:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-5px) scale(1.05); /* Efeito mais visível */
+            box-shadow: 0 10px 25px rgba(88, 166, 255, 0.5);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background-color: var(--bg-primary);
+                border-radius: 0.5rem;
+                margin-top: 0.5rem;
+                padding: 1rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            .navbar-nav .nav-item {
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .profile-img {
+                width: 250px;
+                height: 250px;
+                margin-top: 2rem;
+            }
+
+            .section {
+                padding: 5rem 0;
+            }
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 3rem;
+            }
+            .section-title::after {
+                width: 60px;
+            }
+
+            .skills-container {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                gap: 1.2rem;
+            }
+            .skill-icon {
+                font-size: 2.8rem;
+            }
+
+            .project-img {
+                height: 180px;
+            }
+
+            .contact-card {
+                padding: 2rem;
+            }
+            .contact-icon {
+                font-size: 2.5rem;
+            }
+            .contact-card h4 {
+                font-size: 1.5rem;
+            }
+
+            .footer-logo {
+                font-size: 1.7rem;
+            }
+            .social-link {
+                width: 42px;
+                height: 42px;
+                font-size: 1.4rem;
+            }
+            .footer-links {
+                gap: 0.6rem;
+            }
+            .footer-link {
+                font-size: 0.95rem;
+            }
+            .copyright {
+                font-size: 0.8rem;
+            }
+
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                margin-bottom: 2rem;
+            }
+            .d-flex.gap-3 {
+                flex-direction: column; /* Botões um abaixo do outro em mobile */
+                align-items: center;
+                gap: 1rem;
+            }
+            .btn-primary, .btn-outline-light {
+                width: 80%; /* Botões ocupam mais largura */
+                max-width: 300px;
+            }
+            .profile-img {
+                margin-bottom: 2rem; /* Espaço para o conteúdo abaixo */
+                margin-top: 0; /* Remove margem superior se a imagem estiver antes */
+                order: -1; /* Coloca a imagem acima do texto em mobile */
+            }
+            .hero .row {
+                flex-direction: column-reverse; /* Inverte a ordem das colunas para imagem aparecer em cima */
+            }
+
+            .skills-container {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            }
+            .skill-icon {
+                font-size: 2.5rem;
+            }
+            .skill-name {
+                font-size: 1rem;
+            }
+
+            
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" aria-label="Menu de navegação principal">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Vinícius<span>.</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projetos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero d-flex align-items-center">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-10 text-center" data-aos="fade-up" data-aos-duration="1000">
+                    <img src="imagem/download.png" alt="Foto de perfil de Vinícius, desenvolvedor web" class="profile-img img-fluid">
+                    <span class="hero-subtitle mt-4">Olá, eu sou</span>
+                    <h1 class="hero-title">Vinícius </h1>
+                    <p class="hero-description">
+                        Desenvolvedor Web em formação, apaixonado por criar soluções digitais e transformar ideias em realidade através do código.
+                    </p>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <a href="#projects" class="btn btn-primary">Ver Projetos</a>
+                        <a href="#contact" class="btn btn-outline-light">Entrar em Contato</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section bg-secondary-custom">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Sobre Mim</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <img src="imagem/imagem-vini.jpeg" alt="Vinícius" class="img-fluid card-custom">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <p class="lead mb-4 ">
+                        Olá! Sou Vinícius, tenho 16 anos e estou iniciando minha jornada como desenvolvedor. Sou apaixonado por tecnologia e inteligência artificial, e estou sempre buscando aprender mais e construir projetos que me desafiem.
+
+Atualmente, estou estudando programação e desenvolvendo minhas habilidades para me tornar um programador completo.
+                    </p>
+                
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                        <a href="#skills" class="btn btn-primary">Minhas Habilidades</a>
+                        <a href="#projects" class="btn btn-outline-light">Ver Projetos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Minhas Habilidades</h2>
+        <div class="skills-container"> 
+            <div class="card-custom skill-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="bi bi-filetype-html skill-icon" aria-label="Ícone HTML5"></i>
+                <h5 class="skill-name">HTML</h5>
+                <div class="skill-level">
+                    <div class="skill-level-bar" style="width: 90%" aria-label="Nível de proficiência em HTML5: 90%"></div>
+                </div>
+            </div>
+
+            <div class="card-custom skill-card" data-aos="fade-up" data-aos-delay="150">
+                <i class="bi bi-filetype-css skill-icon" aria-label="Ícone CSS3"></i>
+                <h5 class="skill-name">CSS</h5>
+                <div class="skill-level">
+                    <div class="skill-level-bar" style="width: 85%" aria-label="Nível de proficiência em CSS3: 85%"></div>
+                </div>
+            </div>
+
+            <div class="card-custom skill-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-filetype-js skill-icon" aria-label="Ícone JavaScript"></i>
+                <h5 class="skill-name">JavaScript</h5>
+                <div class="skill-level">
+                    <div class="skill-level-bar" style="width: 75%" aria-label="Nível de proficiência em JavaScript: 75%"></div>
+                </div>
+            </div>
+
+            <div class="card-custom skill-card" data-aos="fade-up" data-aos-delay="250">
+                <i class="bi bi-filetype-php skill-icon" aria-label="Ícone PHP"></i>
+                <h5 class="skill-name">PHP</h5>
+                <div class="skill-level">
+                    <div class="skill-level-bar" style="width: 70%" aria-label="Nível de proficiência em PHP: 70%"></div>
+                </div>
+            </div>
+
+            <div class="card-custom skill-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-database skill-icon" aria-label="Ícone MySQL"></i>
+                <h5 class="skill-name">MySQL</h5>
+                <div class="skill-level">
+                    <div class="skill-level-bar" style="width: 65%" aria-label="Nível de proficiência em MySQL: 65%"></div>
+                </div>
+            </div>
+
+            <div class="card-custom skill-card" data-aos="fade-up" data-aos-delay="350">
+                <i class="bi bi-bootstrap-fill skill-icon" aria-label="Ícone Bootstrap"></i>
+                <h5 class="skill-name">Bootstrap</h5>
+                <div class="skill-level">
+                    <div class="skill-level-bar" style="width: 80%" aria-label="Nível de proficiência em Bootstrap: 80%"></div>
+                </div>
+            </div>
+
+            <div class="card-custom skill-card" data-aos="fade-up" data-aos-delay="450">
+                <i class="bi bi-github skill-icon" aria-label="Ícone GitHub"></i>
+                <h5 class="skill-name">GitHub</h5>
+                <div class="skill-level">
+                    <div class="skill-level-bar" style="width: 70%" aria-label="Nível de proficiência em GitHub: 70%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+   <section id="projects" class="section bg-secondary-custom">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Meus Projetos</h2>
+        <div class="row g-4 justify-content-center"> <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-card card-custom">
+                    <img src="imagem/galera-tech.png" class="project-img" alt="Screenshot do Projeto Galera Tech">
+                    <div class="p-4">
+                        <div>
+                            <h4>Galera Tech</h4>
+                            <div class="mb-3">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">JavaScript</span>
+                            </div>
+                            <p class="mb-4">Um repositório com todas as minhas aulas no Projeto Galera-tech</p>
+                        </div>
+                        <div class="d-flex justify-content-between mt-auto">
+                            <a href="https://github.com/Viniz0102/galera-tech.git" class="btn btn-sm btn-primary" aria-label="Ver Projeto Galera Tech">Ver repositório</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-card card-custom">
+                    <img src="imagem/portfolio.jpg" class="project-img" alt="Screenshot do Projeto Portfólio Pessoal">
+                    <div class="p-4">
+                        <div>
+                            <h4>Portfólio Pessoal</h4>
+                            <div class="mb-3">
+                                <span class="project-tag">HTML</span>
+                                <span class="project-tag">CSS</span>
+                                <span class="project-tag">JavaScript</span>
+                            </div>
+                            <p class="mb-4">Meu primeiro portfólio desenvolvido para mostrar meus projetos e habilidades.</p>
+                        </div>
+                        <div class="d-flex justify-content-between mt-auto">
+                            <a href="https://github.com/Viniz0102/portfolio" class="btn btn-sm btn-primary" aria-label="Ver Projeto Portfólio Pessoal">Ver Projeto</a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="https://github.com/Viniz0102" target="_blank" class="btn btn-primary" aria-label="Ver todos os projetos de Vinícius no GitHub">Ver Todos no GitHub</a>
+            </div>
+        </div>
+</section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Entre em Contato</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="row g-4">
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="contact-card card-custom">
+                                <i class="bi bi-envelope-fill contact-icon" aria-label="Ícone de E-mail"></i>
+                                <h4>E-mail</h4>
+                                <p class="mb-3">Envie-me uma mensagem diretamente para meu e-mail.</p>
+                                <a href="mailto:viniciusgadelha88@gmail.com" class="btn btn-primary" aria-label="Enviar e-mail para Vinícius">Enviar E-mail</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                            <div class="contact-card card-custom">
+                                <i class="bi bi-github contact-icon" aria-label="Ícone do GitHub"></i>
+                                <h4>GitHub</h4>
+                                <p class="mb-3">Veja meus projetos e contribuições no GitHub.</p>
+                                <a href="https://github.com/Viniz0102" target="_blank" class="btn btn-primary" aria-label="Visitar perfil do GitHub de Vinícius">Visitar GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <a class="footer-logo" href="#home">Vinícius<span>.</span></a>
+            <div class="social-links">
+                <a href="https://github.com/Viniz0102" class="social-link" target="_blank" data-aos="zoom-in" data-aos-delay="100" aria-label="Link para o GitHub de Vinícius">
+                    <i class="bi bi-github"></i>
+                </a>
+                
+            </div>
+            <div class="footer-links d-flex justify-content-center">
+                <a href="#home" class="footer-link" data-aos="fade-up" data-aos-delay="100">Início</a>
+                <a href="#about" class="footer-link" data-aos="fade-up" data-aos-delay="150">Sobre</a>
+                <a href="#skills" class="footer-link" data-aos="fade-up" data-aos-delay="200">Habilidades</a>
+                <a href="#projects" class="footer-link" data-aos="fade-up" data-aos-delay="250">Projetos</a>
+                <a href="#contact" class="footer-link" data-aos="fade-up" data-aos-delay="300">Contato</a>
+            </div>
+            <p class="copyright" data-aos="fade-up" data-aos-delay="400">
+                &copy; 2025 Vinícius. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <a href="#home" class="back-to-top" id="backToTop" aria-label="Voltar ao topo da página">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init({
+            once: true,
+            duration: 800,
+            easing: 'ease-out-quart'
+        });
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    const offset = document.querySelector('.navbar').offsetHeight;
+                    window.scrollTo({
+                        top: targetElement.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+
+                    const navbarToggler = document.querySelector('.navbar-toggler');
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarToggler && navbarCollapse && navbarCollapse.classList.contains('show')) {
+                        new bootstrap.Collapse(navbarCollapse, {
+                            toggle: false
+                        }).hide();
+                    }
+                }
+            });
+        });
+
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const navbarHeight = document.querySelector('.navbar').offsetHeight; // Obter a altura da navbar dinamicamente
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Ajuste o offset para considerar a altura da navbar + um pequeno buffer
+                if (pageYOffset >= sectionTop - navbarHeight - 50) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
